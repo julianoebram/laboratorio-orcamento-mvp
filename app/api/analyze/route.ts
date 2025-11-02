@@ -31,9 +31,10 @@ export async function POST(request: NextRequest) {
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
       // Return mock data for testing without API key
+      const mockExams = getMockExams();
       return NextResponse.json({
-        exams: getMockExams(),
-        total: getMockExams().reduce((sum, exam) => sum + exam.preco, 0),
+        exams: mockExams,
+        total: mockExams.reduce((sum, exam) => sum + exam.preco, 0),
         extractedText: "API Key não configurada - usando dados de exemplo",
       });
     }
@@ -97,8 +98,12 @@ Se não conseguir identificar nenhum exame, retorne apenas: "NENHUM EXAME IDENTI
     });
   } catch (error) {
     console.error("Error analyzing image:", error);
+    const errorMessage = error instanceof Error ? error.message : "Erro desconhecido";
     return NextResponse.json(
-      { error: "Erro ao processar a imagem" },
+      { 
+        error: "Erro ao processar a imagem",
+        details: errorMessage 
+      },
       { status: 500 }
     );
   }
@@ -133,11 +138,15 @@ function matchExams(text: string): Exam[] {
 
 function getMockExams(): Exam[] {
   // Return some sample exams for testing
-  return [
-    exams.find((e) => e.mnemonico === "HEMOGRAMA")!,
-    exams.find((e) => e.mnemonico === "GLICOSE")!,
-    exams.find((e) => e.mnemonico === "COL TOTAL")!,
-    exams.find((e) => e.mnemonico === "HDL")!,
-    exams.find((e) => e.mnemonico === "LDL")!,
-  ].filter(Boolean);
+  const mockExamCodes = ["HEMOGRAMA", "GLICOSE", "COL TOTAL", "HDL", "LDL"];
+  const foundExams: Exam[] = [];
+  
+  for (const code of mockExamCodes) {
+    const exam = exams.find((e) => e.mnemonico === code);
+    if (exam) {
+      foundExams.push(exam);
+    }
+  }
+  
+  return foundExams;
 }
