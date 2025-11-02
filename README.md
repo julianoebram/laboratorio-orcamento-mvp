@@ -1,57 +1,120 @@
-💉 Laboratório Orçamento MVP
-Sistema web para geração automatizada de orçamentos de exames laboratoriais a partir de guias médicas. Ideal para clínicas, laboratórios e unidades de saúde que desejam agilizar o atendimento e padronizar precificação.
+# 💉 Laboratório - Orçamento de Exames
 
-🚀 Objetivo
-Criar um MVP funcional que permita:
+Sistema web para geração automatizada de orçamentos de exames laboratoriais a partir de guias médicas.
 
-Upload de imagens de guias médicas
+## 🚀 Funcionalidades
 
-Extração automática dos exames solicitados via OCR
+- ✅ Upload de imagens de guias médicas (drag & drop ou seleção)
+- ✅ Análise automática usando Google Gemini Vision AI
+- ✅ Identificação inteligente de exames solicitados
+- ✅ Cálculo automático de preços baseado em tabela
+- ✅ Interface moderna e responsiva
+- ✅ Visualização detalhada do orçamento
 
-Cruzamento com tabelas de preços específicas (particular, convênio, empresa)
+## 🛠️ Tecnologias
 
-Geração de orçamento detalhado com valores individuais e total
+- **Next.js 16** - Framework React com App Router
+- **TypeScript** - Tipagem estática
+- **Tailwind CSS** - Estilização moderna
+- **Google Gemini AI** - Análise de imagem e OCR
+- **React 19** - Interface do usuário
 
-🧱 Estrutura do Projeto
-Código
-laboratorio-orcamento-mvp/
-├── backend/              # API Flask + OCR + cálculo de orçamento
-│   ├── app.py
-│   ├── routes/
-│   ├── services/
-│   ├── data/
-│   └── requirements.txt
-├── frontend/             # Interface web (em desenvolvimento)
-├── docs/                 # Documentação técnica e escopo
-├── README.md             # Visão geral do projeto
-└── .gitignore
-🧪 Tecnologias utilizadas
-Backend: Python + Flask
+## 📦 Instalação
 
-OCR: Tesseract
+1. Clone o repositório:
+```bash
+git clone <repository-url>
+cd sandbox
+```
 
-Banco de dados: SQLite (MVP) com suporte a múltiplas tabelas de preços
+2. Instale as dependências:
+```bash
+pnpm install
+```
 
-Frontend: React.js (em desenvolvimento)
+3. Configure a API Key do Google Gemini:
+```bash
+cp .env.example .env
+```
 
-Hospedagem: Vercel / Railway / Render
+Edite o arquivo `.env` e adicione sua chave da API do Google Gemini:
+```
+GEMINI_API_KEY=sua_chave_aqui
+```
 
-📦 Funcionalidades
-Upload de imagem da guia médica
+> 🔑 Obtenha sua chave gratuita em: https://makersuite.google.com/app/apikey
 
-Extração de exames via OCR
+## 🚀 Como Usar
 
-Seleção de tipo de tabela (particular, convênio, empresa)
+1. Inicie o servidor de desenvolvimento:
+```bash
+pnpm dev
+```
 
-Cálculo automático do orçamento
+2. Abra o navegador em `http://localhost:3000`
 
-Retorno em JSON (pronto para integração com frontend)
+3. Faça upload de uma imagem da guia médica
 
-📌 Próximos passos
-Finalizar interface web para upload e visualização
+4. Clique em "Analisar Exames"
 
-Adicionar painel administrativo para cadastro de exames e tabelas
+5. Visualize o orçamento gerado automaticamente
 
-Exportação de orçamento em PDF
+## 📋 Tabela de Exames
 
-Integração com WhatsApp para envio automático
+O sistema possui 26 exames cadastrados com preços atualizados:
+
+- Hemograma Completo - R$ 19,90
+- Glicose - R$ 18,90
+- Colesterol Total - R$ 22,90
+- HDL / LDL - R$ 22,90 cada
+- Triglicerídeos - R$ 22,90
+- TSH - R$ 31,90
+- Hemoglobina Glicada - R$ 38,50
+- E muitos outros...
+
+Veja a lista completa em `data/exams.json`
+
+## 🏗️ Estrutura do Projeto
+
+```
+sandbox/
+├── app/
+│   ├── api/
+│   │   └── analyze/
+│   │       └── route.ts      # API endpoint para análise
+│   ├── globals.css           # Estilos globais
+│   ├── layout.tsx            # Layout principal
+│   └── page.tsx              # Página inicial
+├── data/
+│   └── exams.json            # Banco de dados de exames
+├── .env.example              # Exemplo de variáveis de ambiente
+├── next.config.ts            # Configuração do Next.js
+├── tailwind.config.ts        # Configuração do Tailwind
+└── tsconfig.json             # Configuração do TypeScript
+```
+
+## 🔧 Build para Produção
+
+```bash
+pnpm build
+pnpm start
+```
+
+## 🧪 Modo de Teste
+
+Se a API Key do Gemini não estiver configurada, o sistema retorna dados de exemplo para testes.
+
+## 📝 Notas
+
+- A análise funciona melhor com imagens claras e legíveis
+- Formatos suportados: JPG, PNG, WEBP
+- O sistema identifica exames por nome, código ou aliases
+- Todos os preços são baseados na tabela DB BARRA VELHA - 4987
+
+## 🤝 Contribuindo
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests.
+
+## 📄 Licença
+
+ISC
