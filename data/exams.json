@@ -1,0 +1,262 @@
+[
+  {
+    "codigo": "40301150",
+    "mnemonico": "ACIDO URICO",
+    "descricao": "Ácido Úrico - Dosagem",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 18.90,
+    "aliases": ["acido urico", "ácido úrico", "urico"]
+  },
+  {
+    "codigo": "40201275",
+    "mnemonico": "HBA1C",
+    "descricao": "Hemoglobina Glicada (HbA1c Total)",
+    "material": "Sangue EDTA",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 38.50,
+    "aliases": ["hba1c", "hemoglobina glicada", "glicada", "hb glicada"]
+  },
+  {
+    "codigo": "",
+    "mnemonico": "MICROALB",
+    "descricao": "Microalbuminúria (Amostra Isolada)",
+    "material": "Urina",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 42.00,
+    "aliases": ["microalbuminuria", "microalb", "albumina urina"]
+  },
+  {
+    "codigo": "40300481",
+    "mnemonico": "HEMOGRAMA",
+    "descricao": "Hemograma Completo",
+    "material": "Sangue",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 19.90,
+    "aliases": ["hemograma", "hemograma completo"]
+  },
+  {
+    "codigo": "40300501",
+    "mnemonico": "COL TOTAL",
+    "descricao": "Colesterol Total",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 22.90,
+    "aliases": ["colesterol total", "colesterol", "col total"]
+  },
+  {
+    "codigo": "40300521",
+    "mnemonico": "HDL",
+    "descricao": "Colesterol HDL",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 22.90,
+    "aliases": ["hdl", "colesterol hdl"]
+  },
+  {
+    "codigo": "40300512",
+    "mnemonico": "LDL",
+    "descricao": "Colesterol LDL",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 22.90,
+    "aliases": ["ldl", "colesterol ldl"]
+  },
+  {
+    "codigo": "40300432",
+    "mnemonico": "TRIGLICERIDEOS",
+    "descricao": "Triglicerídeos",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 22.90,
+    "aliases": ["triglicerideos", "triglicerídeos", "triglicerides"]
+  },
+  {
+    "codigo": "40300425",
+    "mnemonico": "TGO",
+    "descricao": "TGO (AST)",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 22.90,
+    "aliases": ["tgo", "ast", "transaminase"]
+  },
+  {
+    "codigo": "40300429",
+    "mnemonico": "TGP",
+    "descricao": "TGP (ALT)",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 22.90,
+    "aliases": ["tgp", "alt", "transaminase"]
+  },
+  {
+    "codigo": "40300919",
+    "mnemonico": "CREATININA",
+    "descricao": "Creatinina",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 18.90,
+    "aliases": ["creatinina"]
+  },
+  {
+    "codigo": "40300925",
+    "mnemonico": "UREIA",
+    "descricao": "Ureia",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 18.90,
+    "aliases": ["ureia", "uréia"]
+  },
+  {
+    "codigo": "40300931",
+    "mnemonico": "GLICOSE",
+    "descricao": "Glicose",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 18.90,
+    "aliases": ["glicose", "glicemia"]
+  },
+  {
+    "codigo": "40300950",
+    "mnemonico": "POTASSIO",
+    "descricao": "Potássio",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 18.90,
+    "aliases": ["potassio", "potássio", "k"]
+  },
+  {
+    "codigo": "40300955",
+    "mnemonico": "SODIO",
+    "descricao": "Sódio",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 18.90,
+    "aliases": ["sodio", "sódio", "na"]
+  },
+  {
+    "codigo": "40300960",
+    "mnemonico": "MAGNESIO",
+    "descricao": "Magnésio",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 18.90,
+    "aliases": ["magnesio", "magnésio", "mg"]
+  },
+  {
+    "codigo": "40300965",
+    "mnemonico": "CALCIO",
+    "descricao": "Cálcio",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 18.90,
+    "aliases": ["calcio", "cálcio", "ca"]
+  },
+  {
+    "codigo": "40300970",
+    "mnemonico": "FOSFORO",
+    "descricao": "Fósforo",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 18.90,
+    "aliases": ["fosforo", "fósforo", "p"]
+  },
+  {
+    "codigo": "40300975",
+    "mnemonico": "FERRO",
+    "descricao": "Ferro",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 18.90,
+    "aliases": ["ferro", "fe"]
+  },
+  {
+    "codigo": "40301000",
+    "mnemonico": "TSH",
+    "descricao": "Hormônio Estimulante da Tireoide (TSH)",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 31.90,
+    "aliases": ["tsh", "tireoide"]
+  },
+  {
+    "codigo": "40301005",
+    "mnemonico": "T4L",
+    "descricao": "Tiroxina Livre (T4 Livre)",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 36.69,
+    "aliases": ["t4l", "t4 livre", "tiroxina"]
+  },
+  {
+    "codigo": "",
+    "mnemonico": "FSH",
+    "descricao": "Hormônio Folículo Estimulante",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 27.50,
+    "aliases": ["fsh", "foliculo estimulante"]
+  },
+  {
+    "codigo": "",
+    "mnemonico": "LH",
+    "descricao": "Hormônio Luteinizante",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 38.50,
+    "aliases": ["lh", "luteinizante"]
+  },
+  {
+    "codigo": "",
+    "mnemonico": "PRL",
+    "descricao": "Prolactina",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 27.50,
+    "aliases": ["prl", "prolactina"]
+  },
+  {
+    "codigo": "",
+    "mnemonico": "DIOL",
+    "descricao": "Estradiol",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 31.90,
+    "aliases": ["diol", "estradiol"]
+  },
+  {
+    "codigo": "",
+    "mnemonico": "BETA HCG",
+    "descricao": "Beta HCG Quantitativo",
+    "material": "Soro",
+    "setor": "DB BARRA VELHA - 4987",
+    "prazo": "3 dias úteis",
+    "preco": 45.00,
+    "aliases": ["beta hcg", "hcg", "beta"]
+  }
+]
