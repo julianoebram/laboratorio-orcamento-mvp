@@ -17,19 +17,47 @@ const exams: Exam[] = examsData as Exam[];
 
 export async function POST(request: NextRequest) {
   try {
-    const formData = await request.formData();
+    console.log("=== Iniciando análise de imagem ===");
+    
+    // Parse FormData
+    let formData;
+    try {
+      formData = await request.formData();
+      console.log("FormData recebido com sucesso");
+    } catch (error) {
+      console.error("Erro ao fazer parse do FormData:", error);
+      return NextResponse.json(
+        { error: "Erro ao processar o formulário", details: error instanceof Error ? error.message : "Erro desconhecido" },
+        { status: 400 }
+      );
+    }
+
     const image = formData.get("image") as File;
+    console.log("Imagem recebida:", image ? `${image.name} (${image.type}, ${image.size} bytes)` : "null");
 
     if (!image) {
+      console.error("Nenhuma imagem foi enviada");
       return NextResponse.json(
         { error: "Nenhuma imagem foi enviada" },
         { status: 400 }
       );
     }
 
+    // Validate image type
+    if (!image.type.startsWith("image/")) {
+      console.error("Tipo de arquivo inválido:", image.type);
+      return NextResponse.json(
+        { error: "O arquivo enviado não é uma imagem válida" },
+        { status: 400 }
+      );
+    }
+
     // Check if API key is configured
     const apiKey = process.env.GEMINI_API_KEY;
+    console.log("API Key configurada:", apiKey ? "Sim" : "Não");
+    
     if (!apiKey) {
+      console.log("Usando dados mock (API Key não configurada)");
       // Return mock data for testing without API key
       const mockExams = getMockExams();
       return NextResponse.json({
@@ -40,11 +68,23 @@ export async function POST(request: NextRequest) {
     }
 
     // Convert image to base64
-    const bytes = await image.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-    const base64Image = buffer.toString("base64");
+    console.log("Convertendo imagem para base64...");
+    let base64Image;
+    try {
+      const bytes = await image.arrayBuffer();
+      const buffer = Buffer.from(bytes);
+      base64Image = buffer.toString("base64");
+      console.log("Imagem convertida com sucesso (tamanho base64:", base64Image.length, "caracteres)");
+    } catch (error) {
+      console.error("Erro ao converter imagem:", error);
+      return NextResponse.json(
+        { error: "Erro ao processar a imagem", details: error instanceof Error ? error.message : "Erro desconhecido" },
+        { status: 500 }
+      );
+    }
 
     // Initialize Gemini
+    console.log("Inicializando Gemini AI...");
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
 
@@ -72,32 +112,50 @@ Exemplos de exames que podem aparecer:
 Se não conseguir identificar nenhum exame, retorne apenas: "NENHUM EXAME IDENTIFICADO"`;
 
     // Analyze image
-    const result = await model.generateContent([
-      prompt,
-      {
-        inlineData: {
-          mimeType: image.type,
-          data: base64Image,
+    console.log("Enviando imagem para análise...");
+    let extractedText;
+    try {
+      const result = await model.generateContent([
+        prompt,
+        {
+          inlineData: {
+            mimeType: image.type,
+            data: base64Image,
+          },
         },
-      },
-    ]);
+      ]);
 
-    const response = await result.response;
-    const extractedText = response.text();
+      const response = await result.response;
+      extractedText = response.text();
+      console.log("Texto extraído:", extractedText.substring(0, 200) + "...");
+    } catch (error) {
+      console.error("Erro ao chamar Gemini API:", error);
+      return NextResponse.json(
+        { error: "Erro ao analisar a imagem com IA", details: error instanceof Error ? error.message : "Erro desconhecido" },
+        { status: 500 }
+      );
+    }
 
     // Match exams from extracted text
+    console.log("Buscando correspondências de exames...");
     const identifiedExams = matchExams(extractedText);
+    console.log("Exames identificados:", identifiedExams.length);
 
     // Calculate total
     const total = identifiedExams.reduce((sum, exam) => sum + exam.preco, 0);
+    console.log("Total calculado: R$", total.toFixed(2));
 
+    console.log("=== Análise concluída com sucesso ===");
     return NextResponse.json({
       exams: identifiedExams,
       total,
       extractedText,
     });
   } catch (error) {
+    console.error("=== ERRO GERAL ===");
     console.error("Error analyzing image:", error);
+    console.error("Stack trace:", error instanceof Error ? error.stack : "N/A");
+    
     const errorMessage = error instanceof Error ? error.message : "Erro desconhecido";
     return NextResponse.json(
       { 
