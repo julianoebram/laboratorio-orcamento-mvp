@@ -86,7 +86,7 @@ export async function POST(request: NextRequest) {
     // Initialize Gemini
     console.log("Inicializando Gemini AI...");
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     // Create prompt for exam extraction
     const prompt = `Analise esta imagem de uma guia médica e extraia TODOS os nomes dos exames solicitados.
