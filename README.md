@@ -104,6 +104,37 @@ pnpm start
 
 Se a API Key do Gemini não estiver configurada, o sistema retorna dados de exemplo para testes.
 
+Para testar a configuração do sistema:
+```bash
+node test-api.js
+```
+
+## 🔧 Solução de Problemas
+
+Se você encontrar erros no endpoint `/api/analyze`, consulte o guia completo de troubleshooting:
+
+```bash
+cat TROUBLESHOOTING.md
+```
+
+### Problemas Comuns:
+
+1. **"Erro ao analisar a imagem"**
+   - Verifique se a API Key está configurada corretamente
+   - Verifique os logs do servidor no terminal
+   - Consulte o console do navegador (F12)
+
+2. **Dados mock ao invés de análise real**
+   - Configure a `GEMINI_API_KEY` no arquivo `.env.local`
+   - Reinicie o servidor após configurar
+
+3. **Imagem não é processada**
+   - Verifique o formato (JPG, PNG, WEBP)
+   - Verifique o tamanho (máximo 10MB)
+   - Certifique-se de que a imagem contém texto legível
+
+Para mais detalhes, veja: [TROUBLESHOOTING.md](./TROUBLESHOOTING.md)
+
 ## 📝 Notas
 
 - A análise funciona melhor com imagens claras e legíveis

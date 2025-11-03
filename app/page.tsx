@@ -66,13 +66,15 @@ export default function Home() {
       });
 
       if (!response.ok) {
-        throw new Error("Erro ao analisar a imagem");
+        const errorData = await response.json().catch(() => ({ error: "Erro ao analisar a imagem" }));
+        throw new Error(errorData.error || `Erro ${response.status}: ${response.statusText}`);
       }
 
       const data = await response.json();
       setResult(data);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Erro desconhecido");
+      console.error("Erro na análise:", err);
+      setError(err instanceof Error ? err.message : "Erro desconhecido ao processar a imagem");
     } finally {
       setLoading(false);
     }

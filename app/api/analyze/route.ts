@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const image = formData.get("image") as File;
+    const image = formData.get("image") as File | null;
     console.log("Imagem recebida:", image ? `${image.name} (${image.type}, ${image.size} bytes)` : "null");
 
     if (!image) {
@@ -44,10 +44,20 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate image type
-    if (!image.type.startsWith("image/")) {
+    if (!image.type || !image.type.startsWith("image/")) {
       console.error("Tipo de arquivo inválido:", image.type);
       return NextResponse.json(
         { error: "O arquivo enviado não é uma imagem válida" },
+        { status: 400 }
+      );
+    }
+
+    // Validate image size (max 10MB)
+    const maxSize = 10 * 1024 * 1024; // 10MB
+    if (image.size > maxSize) {
+      console.error("Imagem muito grande:", image.size);
+      return NextResponse.json(
+        { error: "A imagem é muito grande. Tamanho máximo: 10MB" },
         { status: 400 }
       );
     }
@@ -128,10 +138,25 @@ Se não conseguir identificar nenhum exame, retorne apenas: "NENHUM EXAME IDENTI
       const response = await result.response;
       extractedText = response.text();
       console.log("Texto extraído:", extractedText.substring(0, 200) + "...");
+      
+      if (!extractedText || extractedText.trim() === "") {
+        console.warn("Texto extraído está vazio");
+        extractedText = "NENHUM EXAME IDENTIFICADO";
+      }
     } catch (error) {
       console.error("Erro ao chamar Gemini API:", error);
+      
+      // Check if it's a quota/billing error
+      const errorMessage = error instanceof Error ? error.message : "Erro desconhecido";
+      if (errorMessage.includes("quota") || errorMessage.includes("billing")) {
+        return NextResponse.json(
+          { error: "Limite de uso da API atingido ou problema de cobrança", details: errorMessage },
+          { status: 429 }
+        );
+      }
+      
       return NextResponse.json(
-        { error: "Erro ao analisar a imagem com IA", details: error instanceof Error ? error.message : "Erro desconhecido" },
+        { error: "Erro ao analisar a imagem com IA", details: errorMessage },
         { status: 500 }
       );
     }
